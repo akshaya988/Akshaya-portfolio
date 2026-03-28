@@ -1,0 +1,81 @@
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-screen--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loading-screen__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.loading-screen__logo {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 500;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-screen__bracket { color: var(--accent); }
+.loading-screen__name { color: var(--text-primary); padding: 0 0.2rem; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.loading-screen__bar-track {
+  width: 200px;
+  height: 2px;
+  background: var(--border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.loading-screen__bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 100px;
+  animation: load-bar 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes load-bar {
+  0% { width: 0%; }
+  60% { width: 75%; }
+  100% { width: 100%; }
+}
+
+.loading-screen__text {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* Corner decorations */
+.loading-screen__corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--accent);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.4;
+}
+
+.loading-screen__corner--tl { top: 24px; left: 24px; border-top-width: 2px; border-left-width: 2px; }
+.loading-screen__corner--tr { top: 24px; right: 24px; border-top-width: 2px; border-right-width: 2px; }
+.loading-screen__corner--bl { bottom: 24px; left: 24px; border-bottom-width: 2px; border-left-width: 2px; }
+.loading-screen__corner--br { bottom: 24px; right: 24px; border-bottom-width: 2px; border-right-width: 2px; }

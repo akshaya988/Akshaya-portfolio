@@ -1,0 +1,259 @@
+/* ============================================
+   DESIGN TOKENS & GLOBAL STYLES
+   Dark Editorial — Electric Accent Theme
+   ============================================ */
+
+:root {
+  /* Color Palette */
+  --bg-primary: #0a0a0b;
+  --bg-secondary: #111114;
+  --bg-card: #16161a;
+  --bg-card-hover: #1e1e24;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(82, 255, 168, 0.3);
+
+  /* Accent — electric mint green */
+  --accent: #52ffa8;
+  --accent-dim: rgba(82, 255, 168, 0.15);
+  --accent-glow: rgba(82, 255, 168, 0.4);
+  --accent-dark: #1a9e5f;
+
+  /* Text */
+  --text-primary: #f0f0f2;
+  --text-secondary: #8888a0;
+  --text-muted: #555568;
+
+  /* Fonts */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --section-padding: 7rem 0;
+  --container-width: 1180px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-med: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 20px rgba(0,0,0,0.3);
+  --shadow-accent: 0 0 30px rgba(82, 255, 168, 0.2), 0 0 60px rgba(82, 255, 168, 0.05);
+}
+
+/* Light Mode */
+[data-theme="light"] {
+  --bg-primary: #f8f8f6;
+  --bg-secondary: #f0f0ed;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4f4f2;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-accent: rgba(10, 120, 70, 0.3);
+  --accent: #0a7846;
+  --accent-dim: rgba(10, 120, 70, 0.1);
+  --accent-glow: rgba(10, 120, 70, 0.2);
+  --text-primary: #141414;
+  --text-secondary: #5a5a6a;
+  --text-muted: #9090a0;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 20px rgba(0,0,0,0.06);
+  --shadow-accent: 0 0 20px rgba(10, 120, 70, 0.1);
+}
+
+/* ============ RESET & BASE ============ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition-med), color var(--transition-med);
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+/* Selection */
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ============ TYPOGRAPHY ============ */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { max-width: 100%; }
+
+/* ============ LAYOUT HELPERS ============ */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: var(--section-padding);
+}
+
+/* ============ SECTION HEADER ============ */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* ============ BUTTONS ============ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  background: var(--accent);
+  color: #0a0a0b;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-accent);
+  opacity: 0.92;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.75rem;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ============ CARD BASE ============ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: transform var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med), background var(--transition-med);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-card), 0 0 0 1px var(--border-accent);
+  background: var(--bg-card-hover);
+}
+
+/* ============ NOISE TEXTURE ============ */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ============ ACCENT LINE ============ */
+.accent-line {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+
+/* ============ FADE-IN ANIMATION ============ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  70% { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  :root { --section-padding: 5rem 0; }
+  .section-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 1.25rem; }
+}
